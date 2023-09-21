@@ -1,11 +1,16 @@
 resource "google_sql_database_instance" "wordpress_instance" {
   name             = "mysql-wordpress-instance"
-  region           = "europe-west2"
+  region           = var.region
   database_version = "MYSQL_5_7"
 
   settings {
-    tier = "db-f1-micro"
+    tier = var.sql_tier
+
+    backup_configuration {
+      enabled = true
+    }
   }
+  deletion_protection = false
 }
 
 resource "google_sql_database" "wordpress_db" {

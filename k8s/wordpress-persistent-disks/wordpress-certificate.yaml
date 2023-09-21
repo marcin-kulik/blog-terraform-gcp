@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wordpress-cert
+  namespace: ingress-nginx
+spec:
+  secretName: wordpress-tls  # The secret where the cert will be stored
+  issuerRef:
+    name: letsencrypt-prod  # Refers to your ClusterIssuer
+    kind: ClusterIssuer
+  commonName: kubernetix.co.uk
+  dnsNames:
+    - kubernetix.co.uk
+    - www.kubernetix.co.uk

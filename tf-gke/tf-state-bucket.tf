@@ -1,7 +1,7 @@
 # [START storage_kms_encryption_tfstate]
 resource "google_kms_key_ring" "terraform_state" {
   name     = "${random_id.bucket_prefix.hex}-bucket-tfstate"
-  location = "europe-west2"
+  location = var.region
 }
 
 resource "google_kms_crypto_key" "terraform_state_bucket" {
@@ -14,11 +14,6 @@ resource "google_kms_crypto_key" "terraform_state_bucket" {
   }
 }
 
-resource "google_project_iam_member" "default" {
-  project = "terraform-infra-397515"
-  role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  member  = "serviceAccount:service-1090872326188@gs-project-accounts.iam.gserviceaccount.com"
-}
 # [END storage_kms_encryption_tfstate]
 
 # [START storage_bucket_tf_with_versioning]
@@ -29,7 +24,7 @@ resource "random_id" "bucket_prefix" {
 resource "google_storage_bucket" "terrafrom-state" {
   name          = "${random_id.bucket_prefix.hex}-bucket-tfstate"
   force_destroy = false
-  location      = "europe-west2"
+  location      = var.region
   storage_class = "STANDARD"
   versioning {
     enabled = true
@@ -38,6 +33,6 @@ resource "google_storage_bucket" "terrafrom-state" {
     default_kms_key_name = google_kms_crypto_key.terraform_state_bucket.id
   }
   depends_on = [
-    google_project_iam_member.default
+    google_project_iam_member.kms
   ]
 }
