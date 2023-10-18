@@ -8,7 +8,7 @@ spec:
   issuerRef:
     name: letsencrypt-prod  # Refers to your ClusterIssuer
     kind: ClusterIssuer
-  commonName: kubernetix.co.uk
+  commonName: kubernetics.co.uk
   dnsNames:
-    - kubernetix.co.uk
-    - www.kubernetix.co.uk
+    - kubernetics.co.uk
+    - www.kubernetics.co.uk

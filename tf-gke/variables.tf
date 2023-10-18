@@ -85,7 +85,7 @@ variable "ingress_nginx" {
 
 variable "dns_name" {
   type = string
-  default = "kubernetix.co.uk."  # Ensure the trailing dot
+  default = "kubernetics.co.uk."  # Ensure the trailing dot
 }
 
 variable "sql_tier" {

@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: kubernetix.co.uk
+    - host: kubernetics.co.uk
       http:
         paths:
           - path: /
@@ -15,7 +15,7 @@ spec:
                 name: wordpress
                 port:
                   number: 80
-    - host: www.kubernetix.co.uk
+    - host: www.kubernetics.co.uk
       http:
         paths:
           - path: /
@@ -27,6 +27,6 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - kubernetix.co.uk
-        - www.kubernetix.co.uk
+        - kubernetics.co.uk
+        - www.kubernetics.co.uk
       secretName: wordpress-tls
