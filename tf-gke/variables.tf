@@ -9,7 +9,7 @@ variable "credentials" {
 
 variable "project_id" {
   type    = string
-  default = "terraform-gke"
+  default = "wordpress-tf-gke"
 }
 
 variable "billing_account_id" {
